@@ -6,9 +6,7 @@ struct date {
 };
 
 bool isLeap(int y) {
-	if (y % 4 != 0) return false;
-	if (y % 100 != 0) return true;
-	if (y % 400 == 0) return true;
+	if (y % 400 == 0 || (y % 4 == 0 && y % 100 != 0)) return true;
 	return false;
 }
 
@@ -33,7 +31,7 @@ int main(void)
 	scanf("%d %d %d", &today.year, &today.month, &today.day);
 	scanf("%d %d %d", &Dday.year, &Dday.month, &Dday.day);
 
-	if (Dday.year - today.year >= 1000 && cal(0, today.month, today.day) <= cal(0, Dday.month, Dday.day))
+	if (Dday.year - today.year > 1000 || (Dday.year - today.year >= 1000 && cal(0, today.month, today.day) <= cal(0, Dday.month, Dday.day)))
 		printf("gg");
 	else {
 		int r1 = cal(today.year, today.month, today.day);
