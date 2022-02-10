@@ -1,6 +1,10 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 #include <stdlib.h>
+#include <iostream>
+#include <algorithm>
+
+using namespace std;
 
 typedef struct TreeNode {
 	struct TreeNode* left;
@@ -45,7 +49,7 @@ TreeNode* Search(TreeNode* Root, int key)
 
 int main(void)
 {
-	TreeNode* Root = NULL, * tmp = NULL;
+	TreeNode* Root = NULL, *tmp = NULL;
 	int N, M, e;
 	scanf("%d", &N);
 
