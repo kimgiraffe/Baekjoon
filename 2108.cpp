@@ -36,7 +36,7 @@ int main(void)
 		}
 	}
 	
-	cout << floor(avg+0.5) << '\n';
+	printf("%.0lf\n", avg);
 	printf("%d\n", arr[(N - 1) / 2]);
 	printf("%d\n", flag - 4000);
 	printf("%d\n", arr[N - 1] - arr[0]);
