@@ -11,7 +11,7 @@ int main(void)
 
 	int len = str.length();
 
-	if (str[0] == ' ') {
+	if (str[0] == ' ' || str[0] == '\0') {
 		cnt--;
 	}
 
@@ -23,5 +23,6 @@ int main(void)
 	}
 
 	cout << cnt + 1;
+
 	return 0;
 }
