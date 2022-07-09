@@ -1,3 +1,6 @@
 Debug/
 *.sln
 *.vcxproj
+해수면.cpp
+main.cpp
+solution.cpp
