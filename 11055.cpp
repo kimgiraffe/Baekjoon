@@ -5,17 +5,14 @@ using namespace std;
 
 int a[1000];
 int DP[1000];
-int pre[1000];
-int ans[1000];
-int N, last;
+int MAX[1000] = { 0, };
+int N;
 
-int LIS(int n)
+void LIS(int n)
 {
-	last = 0;
-	int len = 1;
+	int ans = a[0];
 	for (int i = 0; i < n; i++) {
 		DP[i] = 1;
-		pre[i] = -1;
 
 		for (int j = 0; j < i; j++) {
 			if (a[j] >= a[i])
@@ -23,31 +20,24 @@ int LIS(int n)
 
 			if (DP[i] < DP[j] + 1) {
 				DP[i] = DP[j] + 1;
-				pre[i] = j;
-				if (len < DP[i])
-					last = i, len = DP[i];
+				MAX[i] = max(a[i] + MAX[j], MAX[i]);
+
 			}
+			ans = max(MAX[i], ans);
 		}
 	}
-	return len;
+	cout << ans;
 }
 
-void printArray(int pos)
-{
-	if (pos < 0)
-		return;
-	printArray(pre[pos]);
-	cout << a[pos] << " ";
-}
 
 int main(void)
 {
 	cin >> N;
 	for (int i = 0; i < N; i++) {
 		cin >> a[i];
+		MAX[i] = a[i];
 	}
-	cout << LIS(N) << '\n';
+	LIS(N);
 	
-	printArray(last);
 	return 0;
 }
