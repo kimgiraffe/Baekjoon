@@ -1,44 +1,46 @@
 #include <iostream>
-#define SWAP(a, b) {int t; t = a; a = b; b = t;}
 
 using namespace std;
 
-long long list[10001] = {};
-long long N;
+constexpr int MAX = 10'001;
+int N, K;
+int A[MAX];
 
-void viewArr(long long list[], long long n)
+int bubble_sort()
 {
-	int i;
-	for (i = 0; i < n; i++) {
-		cout << list[i] << ' ';
-	}
-	cout << '\n';
-}
+	int cnt = 0;
 
-void bubble_sort(long long list[], long long n)
-{
-	long long i, j, tmp, cnt = 0;
-	
-	for (i = 0; i < n; i++) {
-		for (j = 0; j < n-1; j++) {
-			if (list[j] > list[j+1]) {
-				SWAP(list[j], list[j+1]);
+	for (int last = N; last > 1; --last) {
+		for (int i = 1; i < last; ++i) {
+			if (A[i] > A[i + 1]) {
+				int tmp = A[i];
+				A[i] = A[i + 1];
+				A[i + 1] = tmp;
+				cnt++;
+				if (cnt == K) return cnt;
 			}
 		}
 	}
+	return -1;
 }
 
 int main(void)
 {
-	cin >> N;
+	ios::sync_with_stdio(false);
+	cin.tie(NULL);
 
-	for (long long i = 0; i < N; i++) {
-		cin >> list[i];
+	cin >> N >> K;
+	for (int i = 1; i <= N; ++i) {
+		cin >> A[i];
 	}
-
-	bubble_sort(list, N);
-
-	viewArr(list, N);
+	if (bubble_sort() == -1) {
+		cout << -1;
+	}
+	else {
+		for (int i = 1; i <= N; ++i) {
+			cout << A[i] << ' ';
+		}
+	}
 
 	return 0;
 }
